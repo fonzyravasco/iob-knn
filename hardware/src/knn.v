@@ -8,9 +8,24 @@ module knn_core
    (
     `INPUT(KNN_ENABLE, 1),    
     `INPUT(clk, 1),
-    `INPUT(rst, 1)
+    `INPUT(rst, 1),
+    `INPUT(x1, DATA_W),
+    `INPUT(x2, DATA_W),
+    `INPUT(y1, DATA_W),
+    `INPUT(y2, DATA_W),
+    `OUTPUT(z, 2*DATA_W)
     );
-
+   
+   `SIGNAL(dist_int, 2*DATA_W) //internal y
+   `SIGNAL(distx, 2*DATA_W) //internal y
+   `SIGNAL(disty, 2*DATA_W) //internal y
+   `SIGNAL2OUT(z, dist_int) //connect internal y to output
+   
+   `COMB begin
+     distx=x1-x2;
+     disty=y1-y2;
+     dist_int=distx*distx+disty*disty; 
+   end
 
       
 endmodule
