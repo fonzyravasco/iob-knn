@@ -132,11 +132,11 @@ int main() {
 unsigned int tempo_dist[M],tempo_vote[M],tempo_insert[M];
 
   //start knn here
-timer_init(TIMER_BASE);
+
   for (int k=0; k<M; k++) { //for all test points
   //compute distances to dataset points
 
-
+  timer_init(TIMER_BASE);
 
 #ifdef DEBUG
     //uart_printf("\n\nProcessing x[%d]:\n", k);
@@ -145,7 +145,7 @@ timer_init(TIMER_BASE);
     //init all k neighbors infinite distance
     for (int j=0; j<K; j++)
       neighbor[j].dist = INFINITE;
-    tempo_dist[k]=timer_time_us(TIMER_BASE);
+
 
       //elapsedu = timer_time_us(TIMER_BASE);
       //uart_printf("\nExecution time das distancias de todos os pontos: %dus @%dMHz\n\n", elapsedu, FREQ/1000000);
@@ -154,9 +154,14 @@ timer_init(TIMER_BASE);
 #endif
 
 
+  timer_stop();
+  unsigned int tempo_aux=timer_time_us();
+  timer_start();
 
     for (int i=0; i<N; i++) { //for all dataset points
       //compute distance to x[k]
+
+
       unsigned int d = sq_dist(x[k], data[i]);
 
       //uart_printf("\nInit sort time\n");
@@ -176,8 +181,9 @@ timer_init(TIMER_BASE);
 #endif
 
     }
-    tempo_insert[k]=timer_time_us(TIMER_BASE);
-
+    timer_stop();
+    tempo_insert[k]=timer_time_us(TIMER_BASE)-tempo_aux;
+    timer_start();
     //classify test point
 
     //clear all votes
@@ -186,6 +192,10 @@ timer_init(TIMER_BASE);
     int best_voted = 0;
 
     //make neighbours vote
+
+    timer_stop();
+    tempo_aux=timer_time_us();
+    timer_start();
 
     for (int j=0; j<K; j++) { //for all neighbors
       if ( (++votes[data[neighbor[j].idx].label]) > best_votation ) {
@@ -198,7 +208,9 @@ timer_init(TIMER_BASE);
 
     votes_acc[best_voted]++;
 
-    tempo_vote[k]=timer_time_us(TIMER_BASE);
+    timer_stop();
+    tempo_vote[k]=timer_time_us(TIMER_BASE)-tempo_aux;
+    timer_start();
 
 #ifdef DEBUG
   /*  uart_printf("\n\nNEIGHBORS of x[%d]=(%d, %d):\n", k, x[k].x, x[k].y);
@@ -224,7 +236,7 @@ timer_init(TIMER_BASE);
 */
   //Medir tempos dentro do knn
   for(int i=0;i<M;i++)
-    uart_printf("\n\nVolta %d:\ncalcula dist time: %dus\ninsert time em: %dus\nvote time: %dus",i, tempo_dist,tempo_insert, tempo_vote);
+    uart_printf("\n\nVolta %d:\ninsert time em: %dus\nvote time: %dus",i, tempo_insert[i], tempo_vote[i]);
 
   //print classification distribution to check for statistical bias
   for (int l=0; l<C; l++)
