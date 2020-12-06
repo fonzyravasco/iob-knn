@@ -3,3 +3,7 @@
 `ifndef DATA_W
  `define DATA_W 32      //cpu data width
 `endif
+
+`ifndef DATASET_SIZE
+ `define DATASET_SIZE 100      //Dataset number (abitrario)
+`endif

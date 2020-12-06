@@ -6,7 +6,7 @@ module knn_core
     parameter DATA_W = 32
     )
    (
-    `INPUT(KNN_ENABLE, 1),    
+    `INPUT(KNN_ENABLE, 1),
     `INPUT(clk, 1),
     `INPUT(rst, 1),
     `INPUT(x1, DATA_W),
@@ -15,18 +15,17 @@ module knn_core
     `INPUT(y2, DATA_W),
     `OUTPUT(z, 2*DATA_W)
     );
-   
+
    `SIGNAL(dist_int, 2*DATA_W) //internal y
-   `SIGNAL(distx, 2*DATA_W) //internal y
-   `SIGNAL(disty, 2*DATA_W) //internal y
+   `SIGNAL_SIGNED(distx, 2*DATA_W) //internal y
+   `SIGNAL_SIGNED(disty, 2*DATA_W) //internal y
    `SIGNAL2OUT(z, dist_int) //connect internal y to output
-   
+
    `COMB begin
      distx=x1-x2;
      disty=y1-y2;
-     dist_int=distx*distx+disty*disty; 
+     dist_int=distx*distx+disty*disty;
    end
 
-      
-endmodule
 
+endmodule
