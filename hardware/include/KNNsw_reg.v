@@ -1,9 +1,13 @@
 //START_TABLE sw_reg
 
+`SWREG_W(KNN_RESET, 1, 0) //KNN soft reset
+`SWREG_W(KNN_ENABLE, 1, 0) //KNN enable :o
 
-reg KNN_RESET; //Timer soft reset
-reg KNN_ENABLE; //Timer enable
+`SWREG_W(KNN_x1sw, `DATA_W/2, 0)
+`SWREG_W(KNN_x2sw, `DATA_W/2, 0)
+`SWREG_W(KNN_y1sw, `DATA_W/2, 0)
+`SWREG_W(KNN_y2sw, `DATA_W/2, 0)
+`SWREG_W(KNN_zsw, `DATA_W, 0)
 
-reg [DATA_W-1:0] KNN_TEST_POINT; // Fetch test point
-reg [DATA_W-1:0] KNN_TEST_LABEL; //Label test point
-reg [DATA_W-1:0] KNN_DATASET [DATASET_SIZE-1:0]; //Vai buscar o Dataset (temos de alterar o nº)
+
+

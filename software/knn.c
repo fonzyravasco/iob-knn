@@ -162,7 +162,9 @@ unsigned int tempo_dist[M],tempo_vote[M],tempo_insert[M];
       //compute distance to x[k]
 
 
-      unsigned int d = sq_dist(x[k], data[i]);
+    /*  unsigned int d = sq_dist(x[k], data[i]); */
+
+    unsigned int d = knn_gen_inputs(x[k].x,data[i].x, x[k].y, data[i].y)
 
       //uart_printf("\nInit sort time\n");
       //uart_txwait();
