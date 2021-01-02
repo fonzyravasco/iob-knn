@@ -52,6 +52,38 @@ module knn_tb;
       else
         $display("Test failed: expecting knn value 34 but got %d", z);
       
+      @(posedge clk) #1 
+       //en=1; 
+      x1=3; 
+      x2=15;
+      y1=20; 
+      y2=50;
+      #1
+      //z=KNN_VALUE;
+      $display("Coordenates x1: %d  x2: %d  y1: %d  y2: %d Distance %d",x1, x2, y1, y2,z);
+
+      if( z == 1044) 
+        $display("Test passed");
+      else
+        $display("Test failed: expecting knn value 34 but got %d", z);
+        
+        @(posedge clk) #1 
+       //en=1; 
+      x1=132; 
+      x2=33;
+      y1=640; 
+      y2=12;
+      #1
+      //z=KNN_VALUE;
+      $display("Coordenates x1: %d  x2: %d  y1: %d  y2: %d Distance %d",x1, x2, y1, y2,z);
+
+      if( z == 404185) 
+        $display("Test passed");
+      else
+        $display("Test failed: expecting knn value 34 but got %d", z);
+      
+      
+      
       $finish;
    end
    
