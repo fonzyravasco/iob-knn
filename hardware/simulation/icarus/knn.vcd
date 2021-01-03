@@ -1,5 +1,5 @@
 $date
-	Sat Jan  2 18:28:08 2021
+	Sun Jan  3 16:53:31 2021
 $end
 $version
 	Icarus Verilog
@@ -41,50 +41,146 @@ $var reg 16 : distx [15:0] $end
 $var reg 16 ; disty [15:0] $end
 $upscope $end
 $upscope $end
+$scope module knn_list $end
+$var wire 1 < clk $end
+$var wire 32 = data_out [31:0] $end
+$var wire 32 > dist_target [31:0] $end
+$var wire 1 ? rst $end
+$var wire 4 @ write_enable_list [3:0] $end
+$var wire 128 A neighbour_data [127:0] $end
+$scope begin genblk1[1] $end
+$scope module comp_sel $end
+$var wire 1 < clk $end
+$var wire 32 B data_out [31:0] $end
+$var wire 32 C dist_target [31:0] $end
+$var wire 32 D previous_data [31:0] $end
+$var wire 1 ? rst $end
+$var wire 1 E write_enable_out $end
+$var wire 1 F write_enable_previous $end
+$var reg 32 G REG_OUT [31:0] $end
+$var reg 32 H content [31:0] $end
+$var reg 1 E write_enable $end
+$upscope $end
+$upscope $end
+$scope begin genblk1[2] $end
+$scope module comp_sel $end
+$var wire 1 < clk $end
+$var wire 32 I data_out [31:0] $end
+$var wire 32 J dist_target [31:0] $end
+$var wire 32 K previous_data [31:0] $end
+$var wire 1 ? rst $end
+$var wire 1 L write_enable_out $end
+$var wire 1 M write_enable_previous $end
+$var reg 32 N REG_OUT [31:0] $end
+$var reg 32 O content [31:0] $end
+$var reg 1 L write_enable $end
+$upscope $end
+$upscope $end
+$scope begin genblk1[3] $end
+$scope module comp_sel $end
+$var wire 1 < clk $end
+$var wire 32 P data_out [31:0] $end
+$var wire 32 Q dist_target [31:0] $end
+$var wire 32 R previous_data [31:0] $end
+$var wire 1 ? rst $end
+$var wire 1 S write_enable_out $end
+$var wire 1 T write_enable_previous $end
+$var reg 32 U REG_OUT [31:0] $end
+$var reg 32 V content [31:0] $end
+$var reg 1 S write_enable $end
+$upscope $end
+$upscope $end
+$scope module comp_sel0 $end
+$var wire 1 < clk $end
+$var wire 32 W data_out [31:0] $end
+$var wire 32 X dist_target [31:0] $end
+$var wire 32 Y previous_data [31:0] $end
+$var wire 1 ? rst $end
+$var wire 1 Z write_enable_out $end
+$var wire 1 [ write_enable_previous $end
+$var reg 32 \ REG_OUT [31:0] $end
+$var reg 32 ] content [31:0] $end
+$var reg 1 Z write_enable $end
+$upscope $end
+$upscope $end
 $scope module knn_tb $end
-$var wire 32 < z [31:0] $end
-$var reg 1 = KNN_ENABLE $end
-$var reg 1 > KNN_SAMPLE $end
-$var reg 1 ? clk $end
-$var reg 1 @ rst $end
-$var reg 16 A x1 [15:0] $end
-$var reg 16 B x2 [15:0] $end
-$var reg 16 C y1 [15:0] $end
-$var reg 16 D y2 [15:0] $end
+$var wire 32 ^ z [31:0] $end
+$var reg 1 _ KNN_ENABLE $end
+$var reg 1 ` KNN_SAMPLE $end
+$var reg 1 a clk $end
+$var reg 1 b rst $end
+$var reg 16 c x1 [15:0] $end
+$var reg 16 d x2 [15:0] $end
+$var reg 16 e y1 [15:0] $end
+$var reg 16 f y2 [15:0] $end
 $scope module knn0 $end
-$var wire 1 = KNN_ENABLE $end
-$var wire 1 ? clk $end
-$var wire 1 @ rst $end
-$var wire 16 E x1 [15:0] $end
-$var wire 16 F x2 [15:0] $end
-$var wire 16 G y1 [15:0] $end
-$var wire 16 H y2 [15:0] $end
-$var wire 32 I z [31:0] $end
-$var reg 32 J dist_int [31:0] $end
-$var reg 16 K distx [15:0] $end
-$var reg 16 L disty [15:0] $end
+$var wire 1 _ KNN_ENABLE $end
+$var wire 1 a clk $end
+$var wire 1 b rst $end
+$var wire 16 g x1 [15:0] $end
+$var wire 16 h x2 [15:0] $end
+$var wire 16 i y1 [15:0] $end
+$var wire 16 j y2 [15:0] $end
+$var wire 32 k z [31:0] $end
+$var reg 32 l dist_int [31:0] $end
+$var reg 16 m distx [15:0] $end
+$var reg 16 n disty [15:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-bx L
+bx n
+bx m
+bx l
+bx k
+bx j
+bx i
+bx h
+bx g
+bx f
+bx e
+bx d
+bx c
+0b
+1a
+0`
+0_
+bx ^
+bz ]
+bx \
+0[
+0Z
+bx Y
+bz X
+bx W
+bz V
+bx U
+0T
+0S
+bx R
+bz Q
+bx P
+bz O
+bx N
+0M
+0L
 bx K
-bx J
+bz J
 bx I
-bx H
+bz H
 bx G
-bx F
-bx E
+0F
+0E
 bx D
-bx C
+bz C
 bx B
 bx A
-0@
-1?
-0>
-0=
-bx <
+b0 @
+z?
+bz >
+bz =
+z<
 bx ;
 bx :
 bx 9
@@ -114,83 +210,83 @@ z"
 bz !
 $end
 #5000
-0?
+0a
 #7000
-1@
+1b
 #10000
-1?
+1a
 #15000
-0?
+0a
 #17000
-0@
+0b
 #20000
-1?
+1a
 #21000
-1=
+1_
 #25000
-0?
+0a
 #30000
-1?
+1a
 #31000
-1>
+1`
 #35000
-0?
+0a
 #40000
-1?
+1a
 #41000
-0>
+0`
 #45000
-0?
+0a
 #50000
-1?
+1a
 #51000
-b100010 <
-b100010 I
-b100010 J
-b101 L
-b1111111111111101 K
-b11 D
-b11 H
-b1000 C
-b1000 G
-b100 B
-b100 F
-b1 A
-b1 E
+b100010 ^
+b100010 k
+b100010 l
+b101 n
+b1111111111111101 m
+b11 f
+b11 j
+b1000 e
+b1000 i
+b100 d
+b100 h
+b1 c
+b1 g
 #55000
-0?
+0a
 #60000
-1?
+1a
 #61000
-b10000010100 <
-b10000010100 I
-b10000010100 J
-b1111111111100010 L
-b1111111111110100 K
-b110010 D
-b110010 H
-b10100 C
-b10100 G
-b1111 B
-b1111 F
-b11 A
-b11 E
+b10000010100 ^
+b10000010100 k
+b10000010100 l
+b1111111111100010 n
+b1111111111110100 m
+b110010 f
+b110010 j
+b10100 e
+b10100 i
+b1111 d
+b1111 h
+b11 c
+b11 g
 #65000
-0?
+0a
 #70000
-1?
+1a
 #71000
-b1100010101011011001 <
-b1100010101011011001 I
-b1100010101011011001 J
-b1001110100 L
-b1100011 K
-b1100 D
-b1100 H
-b1010000000 C
-b1010000000 G
-b100001 B
-b100001 F
-b10000100 A
-b10000100 E
+b1100010101011011001 ^
+b1100010101011011001 k
+b1100010101011011001 l
+b1001110100 n
+b1100011 m
+b1100 f
+b1100 j
+b1010000000 e
+b1010000000 i
+b100001 d
+b100001 h
+b10000100 c
+b10000100 g
 #72000
