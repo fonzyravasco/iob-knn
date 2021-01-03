@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Sat Jan  2 23:05:17 2021
+# Process ID: 2533
+# Current directory: /home/pedroazevedo/ecomp/iob-soc-knn-final/submodules/KNN/hardware/fpga/vivado/XCKU
+# Command line: vivado -nojournal -log vivado.log -mode batch -source ../knn.tcl -tclargs iob_knn ../../../../hardware/src/knn.v ../../../../hardware/src/iob_knn.v ../../../../hardware/include ../../../../submodules/LIB/hardware/include ../../../../submodules/INTERCON/hardware/include  DATA_W=32 xcku040-fbva676-1-c
+# Log file: /home/pedroazevedo/ecomp/iob-soc-knn-final/submodules/KNN/hardware/fpga/vivado/XCKU/vivado.log
+# Journal file: 
+#-----------------------------------------------------------
+source ../knn.tcl
+couldn't read file "../knn.tcl": no such file or directory
+INFO: [Common 17-206] Exiting Vivado at Sat Jan  2 23:05:58 2021...

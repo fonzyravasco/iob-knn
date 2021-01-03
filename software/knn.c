@@ -76,6 +76,7 @@ int main() {
   //uart_txwait();
 
   timer_init(TIMER_BASE);
+  knn_init(KNN_BASE);
   //read current timer count, compute elapsed time
   //elapsed  = timer_get_count();
   //elapsedu = timer_time_us();
@@ -97,7 +98,7 @@ int main() {
     //init label
     data[i].label = (unsigned char) (cmwc_rand()%C);
   }
-  unsigned int dataset_time = timer_time_us(TIMER_BASE);
+  //unsigned int dataset_time = timer_time_us(TIMER_BASE);
   //uart_printf("\nTempo depois do init dataset: %dus @%dMHz\n\n", elapsedu, FREQ/1000000);
 
 
@@ -115,7 +116,7 @@ int main() {
     x[k].y  = (short) cmwc_rand();
     //x[k].label will be calculated by the algorithm
   }
-  unsigned int test_points_time = timer_time_us(TIMER_BASE);
+  //unsigned int test_points_time = timer_time_us(TIMER_BASE);
   //uart_printf("\nTempo depois dos test points: %dus @%dMHz\n\n", elapsedu, FREQ/1000000);
 
 #ifdef DEBUG
@@ -132,11 +133,11 @@ int main() {
 unsigned int tempo_dist[M],tempo_vote[M],tempo_insert[M];
 
   //start knn here
-
+  timer_reset();
+  timer_start();
+  
   for (int k=0; k<M; k++) { //for all test points
   //compute distances to dataset points
-
-  timer_init(TIMER_BASE);
 
 #ifdef DEBUG
     //uart_printf("\n\nProcessing x[%d]:\n", k);
@@ -154,17 +155,13 @@ unsigned int tempo_dist[M],tempo_vote[M],tempo_insert[M];
 #endif
 
 
-  timer_stop();
-  unsigned int tempo_aux=timer_time_us();
-  timer_start();
-
     for (int i=0; i<N; i++) { //for all dataset points
       //compute distance to x[k]
 
 
     /*  unsigned int d = sq_dist(x[k], data[i]); */
 
-    unsigned int d = knn_gen_inputs(x[k].x,data[i].x, x[k].y, data[i].y)
+    unsigned int d = knn_gen_inputs(x[k].x,data[i].x, x[k].y, data[i].y);
 
       //uart_printf("\nInit sort time\n");
       //uart_txwait();
@@ -183,9 +180,6 @@ unsigned int tempo_dist[M],tempo_vote[M],tempo_insert[M];
 #endif
 
     }
-    timer_stop();
-    tempo_insert[k]=timer_time_us(TIMER_BASE)-tempo_aux;
-    timer_start();
     //classify test point
 
     //clear all votes
@@ -195,9 +189,6 @@ unsigned int tempo_dist[M],tempo_vote[M],tempo_insert[M];
 
     //make neighbours vote
 
-    timer_stop();
-    tempo_aux=timer_time_us();
-    timer_start();
 
     for (int j=0; j<K; j++) { //for all neighbors
       if ( (++votes[data[neighbor[j].idx].label]) > best_votation ) {
@@ -210,9 +201,6 @@ unsigned int tempo_dist[M],tempo_vote[M],tempo_insert[M];
 
     votes_acc[best_voted]++;
 
-    timer_stop();
-    tempo_vote[k]=timer_time_us(TIMER_BASE)-tempo_aux;
-    timer_start();
 
 #ifdef DEBUG
   /*  uart_printf("\n\nNEIGHBORS of x[%d]=(%d, %d):\n", k, x[k].x, x[k].y);
@@ -231,14 +219,12 @@ unsigned int tempo_dist[M],tempo_vote[M],tempo_insert[M];
   //stop knn here
   //read current timer count, compute elapsed time
 
-/* //descomentar para medir tempos fora do knn
-  unsigned int tempo_teste = timer_time_us(TIMER_BASE);
+ //descomentar para medir tempos fora do knn
+  timer_stop();
+//  unsigned int tempo_teste = timer_time_us(TIMER_BASE);
   elapsedu = timer_time_us(TIMER_BASE);
-  uart_printf("\nExecution time total: %dus\ndataset time: %dus\ntest points time: %dus\nEste tempo é igual ao Execution time: %dus\n\n", elapsedu, dataset_time, test_points_time, tempo_teste);
-*/
-  //Medir tempos dentro do knn
-  for(int i=0;i<M;i++)
-    uart_printf("\n\nVolta %d:\ninsert time em: %dus\nvote time: %dus",i, tempo_insert[i], tempo_vote[i]);
+  uart_printf("\nExecution time total: %dus\n", elapsedu);
+
 
   //print classification distribution to check for statistical bias
   for (int l=0; l<C; l++)
