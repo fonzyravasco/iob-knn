@@ -54,13 +54,13 @@ endif
 #
 #DOCUMENT
 #
-DOC_TYPE:=pb
-#DOC_TYPE:=ug
-INTEL ?=1
+#DOC_TYPE:=pb
+DOC_TYPE:=ug
+INTEL ?=0
 XILINX ?=1
 
 VLINE:="V$(VERSION)"
-$(CORE_NAME)_version.txt:
+version.txt:
 ifeq ($(VERSION),)
 	$(error "variable VERSION is not set")
 endif
