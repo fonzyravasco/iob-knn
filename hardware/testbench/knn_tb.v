@@ -122,6 +122,7 @@ module knn_tb;
       $finish;
    end
    
+   //te
    //instantiate knn core
   knn_core knn0
      (
