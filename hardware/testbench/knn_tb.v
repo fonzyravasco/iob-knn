@@ -17,8 +17,13 @@ module knn_tb;
    `SIGNAL(y1, `DATA_W/2)
    `SIGNAL(y2, `DATA_W/2)
    
-   //`SIGNAL_OUT(KNN_VALUE, `DATA_W)   
+   `SIGNAL(neighbour_data, `DATA_W*4) 
+   `SIGNAL(dist_target, `DATA_W)
+   `SIGNAL(output_data, `DATA_W*4)
+  
+    
    `SIGNAL_OUT(z, `DATA_W)
+
    
    initial begin
 `ifdef VCD
@@ -81,8 +86,38 @@ module knn_tb;
         $display("Test passed");
       else
         $display("Test failed: expecting knn value 34 but got %d", z);
+     
+      @(posedge clk) #1
       
+      neighbour_data[`DATA_W-1:0] = 32'b00000000000000000000000000000001;
+      neighbour_data[2*`DATA_W-1:`DATA_W] =32'b00000000000000000000000000000010;
+      neighbour_data[3*`DATA_W-1:2*`DATA_W] =32'b00000000000000000000000000000100;
+      neighbour_data[4*`DATA_W-1:3*`DATA_W] =32'b00000000000000000000000000001000;
+      dist_target =32'b00000000000000000000000000000011;
+   
+      #1
+      if(output_data[`DATA_W-1:0] == 1) 
+        $display("Test passed");
+      else
+        $display("Test failed: expecting knn value 1 but got %d", output_data[`DATA_W-1:0]);
+        
+       if(output_data[2*`DATA_W-1:`DATA_W] == 2) 
+        $display("Test passed");
+      else
+        $display("Test failed: expecting knn value 2 but got %d", output_data[2*`DATA_W-1:`DATA_W]);
+        
+       if(output_data[3*`DATA_W-1:2*`DATA_W] == 3) 
+        $display("Test passed");
+      else
+        $display("Test failed: expecting knn value 3 but got %d", output_data[3*`DATA_W-1:2*`DATA_W]);
       
+      if(output_data[4*`DATA_W-1:3*`DATA_W] == 4) 
+        $display("Test passed");
+      else
+        $display("Test failed: expecting knn value 4 but got %d", output_data[4*`DATA_W-1:3*`DATA_W]);
+      
+     
+     $display("Tests failed because no Control finite state machine was added (registers keep writing the same value. So sad."); 
       
       $finish;
    end
@@ -99,6 +134,15 @@ module knn_tb;
       .y2(y2),
       .z(z)
       );
-    
+   
+    knn_list list0
+    (
+     .neighbour_data(neighbour_data),
+     .clk(clk),
+     .rst(rst),
+     .dist_target(dist_target),
+     .list_out(output_data)
+	);
+
 
 endmodule

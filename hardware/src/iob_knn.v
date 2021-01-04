@@ -42,6 +42,8 @@ module iob_knn
       .z(KNN_zsw)
       );
    
+   
+   
    //ready signal   
    `SIGNAL(ready_int, 1)
    `REG_AR(clk, rst, 0, ready_int, valid)
