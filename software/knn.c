@@ -63,7 +63,7 @@ void insert (struct neighbor element, unsigned int position) {
 
 }
 
-
+/*
 ///////////////////////////////////////////////////////////////////
 int main() {
 
@@ -108,6 +108,7 @@ int main() {
   uart_printf("Idx \tX \tY \tLabel\n");
   for (int i=0; i<N; i++)
     uart_printf("%d \t%d \t%d \t%d\n", i, data[i].x,  data[i].y, data[i].label);*/
+/*
 #endif
 
   //init test points
@@ -124,18 +125,18 @@ int main() {
   uart_printf("Idx \tX \tY\n");
   for (int k=0; k<M; k++)
     uart_printf("%d \t%d \t%d\n", k, x[k].x, x[k].y);*/
-#endif
+//#endif
 
   //
   // PROCESS DATA
   //
-
+/*
 unsigned int tempo_dist[M],tempo_vote[M],tempo_insert[M];
 
   //start knn here
   timer_reset();
   timer_start();
-  
+
   for (int k=0; k<M; k++) { //for all test points
   //compute distances to dataset points
 
@@ -161,8 +162,7 @@ unsigned int tempo_dist[M],tempo_vote[M],tempo_insert[M];
 
     /*  unsigned int d = sq_dist(x[k], data[i]); */
 
-    unsigned int d = knn_gen_inputs(x[k].x,data[i].x, x[k].y, data[i].y);
-
+/*
       //uart_printf("\nInit sort time\n");
       //uart_txwait();
       //timer_init(TIMER_BASE);
@@ -212,7 +212,7 @@ unsigned int tempo_dist[M],tempo_vote[M],tempo_insert[M];
     uart_printf("X \tY \tLabel\n");
     uart_printf("%d \t%d \t%d\n\n\n", x[k].x, x[k].y, x[k].label);
     */
-#endif
+/*#endif
 
   } //all test points classified
 
@@ -230,5 +230,39 @@ unsigned int tempo_dist[M],tempo_vote[M],tempo_insert[M];
   for (int l=0; l<C; l++)
     uart_printf("\n\n%d ", votes_acc[l]);
   uart_printf("\n");
+
+}
+*/
+
+int main()
+{
+
+  int x_array[200];
+  int y_array[200];
+  int i;
+  random_init(S);
+  uart_init(UART_BASE, FREQ/BAUD);
+
+  timer_init(TIMER_BASE);
+
+  for(i=0; i<100;i++){
+    x_array[i] =(short) cmwc_rand();
+  }
+  timer_start();
+
+  for(i=3;i<=99;i++)
+  {
+    y_array[i] = x_array[i]*x_array[i-1]-x_array[i-2]*x_array[i-3];
+  }
+
+
+
+  timer_stop();
+
+  unsigned int elapsedu;
+  elapsedu = timer_time_us(TIMER_BASE);
+
+  uart_printf("\ntimer count: %d us\n",elapsedu);
+
 
 }
